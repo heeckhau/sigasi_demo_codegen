@@ -2,8 +2,8 @@
 import sys, re, time
 
 registers = [
-  ("foo",0xffff0030),
-  ("bar",0x11220030)
+  ("foo",0x0000cafe),
+  ("bar",0x00facade)
   ]
 
 def interp(string):
@@ -18,7 +18,7 @@ def to_vhdl_constant(register):
 	address = register[1]
 	hex_address = "%08x"%address
 	name = register[0]
-	return interp('constant #{name}_address : integer := X"#{hex_address}";')
+	return interp('constant #{name}_address : integer := 16##{hex_address}#;')
 	
 vhdl_constants = [to_vhdl_constant(register) for register in registers]
 

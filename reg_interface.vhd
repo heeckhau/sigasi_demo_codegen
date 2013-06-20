@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.std_logic_arith.all;
+
 use work.p.all;
 entity reg_interface is
 	port(
@@ -20,8 +20,8 @@ begin
 	name : process(clk, rst) is
 	begin
 		if rst = '1' then
-			foo <= (others => 0);
-			bar <= (others => 0);
+			foo <= (others => '0');
+			bar <= (others => '0');
 		elsif rising_edge(clk) then
 			if write = '1' then
 				case to_integer(addr) is
